@@ -8,6 +8,7 @@ import Comment from '../../Components/Comment/Comment';
 import { viewvideo } from '../../action/video';
 import { addtohistory } from '../../action/history'
 import { useSelector, useDispatch } from 'react-redux';
+import { addpoints } from "../../action/points";
 
 const Videopage = () => {
     const { vid } = useParams();
@@ -61,10 +62,17 @@ const Videopage = () => {
             viewer: currentuser?.result?._id,
         }));
     };
+    const handlepoints =()=>{
+        dispatch(addpoints(
+          currentuser?.result?._id,
+          5
+        ))
+      }
 
     useEffect(() => {
         if (currentuser) {
             handlehistory();
+            handlepoints();
         }
         handleviews();
     }, [currentuser]);
@@ -78,7 +86,7 @@ const Videopage = () => {
             <div className="container_videoPage">
                 <div className="container2_videoPage">
                     <div className="video_display_screen_videoPage">
-                        <video src={`http://localhost:5000/${vv?.filepath}`} className="video_ShowVideo_videoPage" controls></video>
+                        <video src={`https://yourtube-clone-5.onrender.com/${vv?.filepath}`} className="video_ShowVideo_videoPage" controls></video>
                         <div className="video_details_videoPage">
                             <div className="video_btns_title_VideoPage_cont">
                                 <p className="video_title_VideoPage">{vv?.title}</p>

@@ -1,6 +1,7 @@
 import axios from "axios"
-const API=axios.create({baseURL:`http://localhost:5000/`})
 
+// const API=axios.create({baseURL:`http://localhost:5000/`})
+const API=axios.create({baseURL:`https://yourtube-clone-5.onrender.com`})
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem("Profile")){
         req.headers.Authorization=`Bearer ${JSON.parse(localStorage.getItem("Profile")).token}`
@@ -33,3 +34,6 @@ export const deletelikedvideo=(videoid,viewer)=>API.delete(`/video/deletelikevid
 export const addtowatchlater=(watchlaterdata)=>API.post('/video/watchlater',watchlaterdata)
 export const getallwatchlater=()=>API.get('/video/getallwatchlater')
 export const deletewatchlater=(videoid,viewer)=>API.delete(`/video/deletewatchlater/${videoid}/${viewer}`)
+
+export const addpoints = (userId, pointsToAdd) => API.post('/user/addpoints', { userId, pointsToAdd });
+export const getpoints = (userId)=>API.get(`/user/getpoints/${userId}`);

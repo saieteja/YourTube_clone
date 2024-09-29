@@ -45,3 +45,9 @@
 border: 2px solid;
 color: rgb(231,140,14);
 }
+.Points_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
